@@ -1,0 +1,70 @@
+# Jose Manuel Quesada Carvajal
+# Ejercicio 1
+
+# Máquina de Turing que le suma 1 a un entero positivo
+
+# Entrada puede ser cualquier numero entero positivo
+# Sirve para cualquier entrada válida
+
+input: '99999'
+blank: ' '
+start state: q0
+table:
+
+# Moverse a la unidad
+  q0:
+    0: {write: 0, R: q0}
+    1: {write: 1, R: q0}
+    2: {write: 2, R: q0}
+    3: {write: 3, R: q0}
+    4: {write: 4, R: q0}
+    5: {write: 5, R: q0}
+    6: {write: 6, R: q0}
+    7: {write: 7, R: q0}
+    8: {write: 8, R: q0}
+    9: {write: 9, R: q0}
+    ' ': {L: suma1}
+
+# Suma dependiendo de lo que lee
+  suma1:
+    0: {write: 1, R: suma1}
+    1: {write: 2, R: suma1}
+    2: {write: 3, R: suma1}
+    3: {write: 4, R: suma1}
+    4: {write: 5, R: suma1}
+    5: {write: 6, R: suma1}
+    6: {write: 7, R: suma1}
+    7: {write: 8, R: suma1}
+    8: {write: 9, R: suma1}
+    9: {write: 0, L: suma2}
+
+# Suma si, al sumar, la unidad da mayor a 9
+  suma2:
+    ' ': {write: 1, R: q1}
+    0: {write: 1, R: q1}
+    1: {write: 2, R: q1}
+    2: {write: 3, R: q1}
+    3: {write: 4, R: q1}
+    4: {write: 5, R: q1}
+    5: {write: 6, R: q1}
+    6: {write: 7, R: q1}
+    7: {write: 8, R: q1}
+    8: {write: 9, R: q1}
+    9: {write: 0, L: suma2}
+  
+# Moverse al final  
+  q1:
+    0: {write: 0, R: q1}
+    1: {write: 1, R: q1}
+    2: {write: 2, R: q1}
+    3: {write: 3, R: q1}
+    4: {write: 4, R: q1}
+    5: {write: 5, R: q1}
+    6: {write: 6, R: q1}
+    7: {write: 7, R: q1}
+    8: {write: 8, R: q1}
+    9: {write: 9, R: q1}
+    ' ': {R: qf}
+
+# Termina la ejecución
+  qf:
